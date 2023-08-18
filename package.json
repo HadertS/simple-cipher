@@ -1,0 +1,19 @@
+{
+  "name": "simple-cipher",
+  "version": "0.0.1",
+  "description": "An implimentation of several simple ciphers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HadertS/simple-cipher.git"
+  },
+  "author": "HadertS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HadertS/simple-cipher/issues"
+  },
+  "homepage": "https://github.com/HadertS/simple-cipher#readme"
+}
