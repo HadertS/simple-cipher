@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/HadertS/simple-cipher/issues"
   },
-  "homepage": "https://github.com/HadertS/simple-cipher#readme"
+  "homepage": "https://github.com/HadertS/simple-cipher#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
