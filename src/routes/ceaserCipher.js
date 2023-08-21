@@ -8,7 +8,7 @@ router.use((req, res, next) => {
 })
 // define the home page route
 router.get('/', (req, res) => {
-  res.send('Birds home page')
+  res.send('Ceaser Cipher home page')
 })
 
 module.exports = router
