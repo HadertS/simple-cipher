@@ -3,9 +3,13 @@ const app = express()
 const router = express.Router()
 const port = 3000
 
-const ceaserCipher = require ('./src/routes/ceaserCipher')
+const logMiddleware = require('./src/middleware/log')
 
-app.use('/ceaser',ceaserCipher)
+const caesarCipherRoute = require ('./src/routes/caesarCipher')
+
+app.use(logMiddleware)
+
+app.use('/caesar',caesarCipherRoute)
 
 app.listen(port, () => {
   console.log(`Simple Cipher listening on port ${port}`)
