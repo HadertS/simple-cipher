@@ -12,5 +12,4 @@ router.get('/encipher', (req:Request, res:Response) => {
   res.send(req.query)
 })
 
-
 export { router };
