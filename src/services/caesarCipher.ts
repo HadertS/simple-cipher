@@ -14,7 +14,16 @@ export function encipher (plaintext:string,direction:string,shift:number){
         }
     }
 
-    
+    plaintext = plaintext.toLowerCase()
+
+    for (let i = 0; i < plaintext.length; i++){
+        if ((plaintext.charCodeAt(i)>96)&&(plaintext.charCodeAt(i)<123)){
+            ciphertext += alphabet[plaintext.charCodeAt(i) - 96]
+        }
+        else {
+            ciphertext += plaintext[i]
+        }
+    }
 
     return ciphertext
 }
