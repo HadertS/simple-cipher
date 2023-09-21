@@ -9,8 +9,6 @@ export function encipher (plaintext:string,direction:string,shift:number){
         } else if (direction = "-") {
             let tempCharacter: unknown = alphabet.pop
             alphabet.unshift(tempCharacter as string)
-        } else {
-            return ""
         }
     }
 
