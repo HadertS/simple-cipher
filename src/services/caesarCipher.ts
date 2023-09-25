@@ -11,12 +11,16 @@ export function encipher (plaintext:string,shift:number,direction:string="+",mai
         }
     }
 
-    plaintext = plaintext.toLowerCase()
-
     for (let i = 0; i < plaintext.length; i++){
         if ((plaintext.charCodeAt(i)>96)&&(plaintext.charCodeAt(i)<123)){
-            ciphertext += alphabet[plaintext.charCodeAt(i) - 97]
-        } else {
+            if (maintainCase){
+                ciphertext += alphabet[plaintext.charCodeAt(i) - 97].toLowerCase()
+            } else{
+                ciphertext += alphabet[plaintext.charCodeAt(i) - 97]
+            }
+        } else if ((plaintext.charCodeAt(i)>64)&&(plaintext.charCodeAt(i)<91)){
+            ciphertext += alphabet[plaintext.charCodeAt(i) - 65]
+        } else if (!ignoreForeignChars){
             ciphertext += plaintext[i]
         }
     }
