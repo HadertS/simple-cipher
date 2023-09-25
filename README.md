@@ -5,7 +5,9 @@ A web application implimentation of several simple ciphers written in Express.
 
 After cloning, install dependancies using `npm install`
 
-Run locally with nodemon using `nodemon app.js`
+Run normally with `npm run start` or with nodemon with `npm run dev`
+
+Jest tests can be run with `npm run test`
 
 # Project Folder Structure
 I will be following the below layout for folders:
