@@ -2,40 +2,31 @@ import request from "supertest"
 import { encipher } from "../../../src/services/caesarCipher"
 
 describe('Caesar Cipher Enciphering', () => {
-    it('Forward shift 1 should return \'UFTU UFYU\'', async () => {
-        let input:string = "Test Text"
-        let direction:string = "+"
-        let shift:number = 1
-        expect(encipher(input,direction,shift)).toBe("UFTU UFYU")
+    it('Forward shift 1, maintainCase false and ignoreForeignChars false should return \'UFTU UFYU\'', async () => {
+        expect(encipher("Test Text",1)).toBe("UFTU UFYU")
     })
-    it('Forward shift 12 should return \'FQEF FQJF\'', async () => {
-      let input:string = "Test Text"
-      let direction:string = "+"
-      let shift:number = 12
-      expect(encipher(input,direction,shift)).toBe("FQEF FQJF")
-  })
-  it('Forward shift 13 should return \'GRFG GRKG\'', async () => {
-        let input:string = "Test Text"
-        let direction:string = "+"
-        let shift:number = 13
-        expect(encipher(input,direction,shift)).toBe("GRFG GRKG")
+    it('Forward shift 12, maintainCase false and ignoreForeignChars false should return \'FQEF FQJF\'', async () => {
+      expect(encipher("Test Text",12)).toBe("FQEF FQJF")
     })
-  it('Reverse shift 1 should return \'SDRS SDWS\'', async () => {
-      let input:string = "Test Text"
-      let direction:string = "-"
-      let shift:number = 1
-      expect(encipher(input,direction,shift)).toBe("SDRS SDWS")
-  })
-  it('Reverse shift 12 should return \'HSGH HSLH\'', async () => {
-    let input:string = "Test Text"
-    let direction:string = "-"
-    let shift:number = 12
-    expect(encipher(input,direction,shift)).toBe("HSGH HSLH")
-  })
-  it('Reverse shift 13 should return \'GRFG GRKG\'', async () => {
-      let input:string = "Test Text"
-      let direction:string = "-"
-      let shift:number = 13
-      expect(encipher(input,direction,shift)).toBe("GRFG GRKG")
-  })
+    it('Forward shift 13, maintainCase false and ignoreForeignChars false should return \'GRFG GRKG\'', async () => {
+          expect(encipher("Test Text",13)).toBe("GRFG GRKG")
+    })
+    it('Reverse shift 1, maintainCase false and ignoreForeignChars false should return \'SDRS SDWS\'', async () => {
+        expect(encipher("Test Text",1,"-")).toBe("SDRS SDWS")
+    })
+    it('Reverse shift 12, maintainCase false and ignoreForeignChars false should return \'HSGH HSLH\'', async () => {
+      expect(encipher("Test Text",12,"-")).toBe("HSGH HSLH")
+    })
+    it('Reverse shift 13, maintainCase false and ignoreForeignChars false should return \'GRFG GRKG\'', async () => {
+        expect(encipher("Test Text",13,"-")).toBe("GRFG GRKG")
+    })
+    it('Reverse shift 12, maintainCase true and ignoreForeignChars false should return \'Grfg Grkg\'', async () => {
+      expect(encipher("Test Text",12,"-",true)).toBe("Grfg Grkg")
+    })
+    it('Reverse shift 12, maintainCase false and ignoreForeignChars true should return \'GRFGGRKG\'', async () => {
+      expect(encipher("Test Text",12,"-",false,true)).toBe("GRFGGRKG")
+    })
+
+
+  
   })
