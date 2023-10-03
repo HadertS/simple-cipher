@@ -8,6 +8,11 @@ module.exports = {
       },
     plugins: ['@typescript-eslint','jest'],
     root: true,
+    env: {
+      "node": true, 
+      "jest":true,
+      
+    },
     rules: {
       "jest/no-disabled-tests": "warn",
       "jest/no-focused-tests": "error",
