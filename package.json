@@ -7,7 +7,8 @@
     "test": "cross-env NODE_ENV=test jest --testTimeout=5000",
     "start": "ts-node server.ts",
     "dev": "nodemon server.ts",
-    "lint": "npx eslint ."
+    "lint": "npx eslint .",
+    "document": "apidoc -i src/ -o doc/"
   },
   "repository": {
     "type": "git",
@@ -27,10 +28,12 @@
     "typescript": "^5.2.2"
   },
   "devDependencies": {
+    "@types/apidoc": "^0.50.1",
     "@types/jest": "^29.5.4",
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@typescript-eslint/parser": "^6.7.2",
+    "apidoc": "^1.2.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.50.0",
     "eslint-plugin-jest": "^27.4.0",
@@ -38,5 +41,9 @@
     "nodemon": "^3.0.1",
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.1"
+  },
+  "apidoc": {
+    "title": "SimpleCipher API Doc",
+    "url" : "https://api.github.com/v1"
   }
 }
