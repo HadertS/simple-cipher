@@ -15,4 +15,4 @@ Documentation can be updated with `npm run document`
 
 # API Documentation
 
-Documentation can be found [here](doc/index.html)
+Documentation can be found [here](https://raw.githack.com/HadertS/simple-cipher/main/doc/index.html)
