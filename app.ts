@@ -6,6 +6,6 @@ import { router as caesarCipherRoutes } from "./src/routes/caesarCipher";
 
 app.use(logMiddleware)
 
-app.use('/caesar',caesarCipherRoutes)
+app.use('/v1/caesar',caesarCipherRoutes)
 
 export default app;

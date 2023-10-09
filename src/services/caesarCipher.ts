@@ -1,4 +1,4 @@
-export function encipher (plaintext:string,shift:number,direction:string="+",maintainCase:boolean=false,ignoreForeignChars:boolean=false){
+export function encipher (plaintext:string,shift:number,direction:string="+",maintainCase:boolean=false,ignoreForeignChars:boolean=true,ignoreWhitespace:boolean=true){
     let ciphertext:string = ""
     const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     for (let i = 0; i < shift; i++) { 
@@ -20,6 +20,10 @@ export function encipher (plaintext:string,shift:number,direction:string="+",mai
             }
         } else if ((plaintext.charCodeAt(i)>64)&&(plaintext.charCodeAt(i)<91)){
             ciphertext += alphabet[plaintext.charCodeAt(i) - 65]
+        } else if ((plaintext.charCodeAt(i)==32)||((plaintext.charCodeAt(i)>=9)&&(plaintext.charCodeAt(i)<=13))) {
+            if (!ignoreWhitespace){
+                ciphertext += plaintext[i]
+            }
         } else if (!ignoreForeignChars){
             ciphertext += plaintext[i]
         }
