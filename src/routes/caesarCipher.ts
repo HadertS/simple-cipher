@@ -21,8 +21,10 @@ const router = express.Router()
 
 router.post('/encode', [
   check('plaintext').notEmpty(),
-  check('direction').notEmpty(),
-  check('shift').notEmpty()
+  check('shift').notEmpty(),
+  check('direction'),
+  check('ignoreForeignChars'),
+  check('ignoreWhitespace')
 ], (req:Request, res:Response) => {
   
   const result = validationResult(req)
