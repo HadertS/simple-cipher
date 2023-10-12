@@ -31,8 +31,9 @@ router.post('/encode', [
   if (result.isEmpty()) {
     res.send(req.body)
   }
-
-res.send({ errors: result.array() })
+  else {
+    res.send({ errors: result.array() })
+  }
 })
 
 /**
