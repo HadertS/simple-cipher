@@ -1,8 +1,9 @@
 import express, { Request, Response } from "express"
+import { check, validationResult } from 'express-validator';
 const router = express.Router()
 
 /**
- * @api {get} /v1/caesar/encode Encode with Caesar Cipher
+ * @api {post} /v1/caesar/encode Encode with Caesar Cipher
  * @apiName encode
  * @apiGroup Caesar
  * @apiVersion 0.0.1
@@ -18,15 +19,22 @@ const router = express.Router()
  * This should generally be set to true for additional security.
  */
 
-router.get('/encode', (req:Request, res:Response) => {
-  console.log(req.query.plaintext);
-  console.log(req.query.direction);
-  console.log(req.query.shift);
-  res.send(req.query)
+router.post('/encode', [
+  check('plaintext').notEmpty(),
+  check('direction').notEmpty(),
+  check('shift').notEmpty()
+], (req:Request, res:Response) => {
+  
+  const result = validationResult(req)
+  if (result.isEmpty()) {
+    res.send(req.body)
+  }
+
+res.send({ errors: result.array() })
 })
 
 /**
- * @api {get} /v1/caesar/decode Decode with Caesar Cipher
+ * @api {post} /v1/caesar/decode Decode with Caesar Cipher
  * @apiName decode
  * @apiGroup Caesar
  * @apiVersion 0.0.2
