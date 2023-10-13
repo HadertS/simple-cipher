@@ -24,6 +24,7 @@ router.post('/encode', [
   body('plaintext').trim().notEmpty().isString(),
   body('shift').notEmpty().isInt({min:1,max:25}),
   body('direction').optional().trim().isString(),
+  body('maintainCase').optional().isBoolean(),
   body('ignoreForeignChars').optional().isBoolean(),
   body('ignoreWhitespace').optional().isBoolean()
 ], (req:Request, res:Response) => {
@@ -34,14 +35,16 @@ router.post('/encode', [
     
     const plaintext:string = req.body.plaintext.trim()
     const shift:number = req.body.shift
-    const direction:string = req.body.direction.trim()
-    const ignoreForeignChars:boolean = req.body.ignoreForeignChars
-    const ignoreWhitespace:boolean = req.body.ignoreWhitespace
+    const direction:string  = (req.body.hasOwnProperty("direction") ? req.body.direction.trim() : "+")
+    const maintainCase:boolean = (req.body.hasOwnProperty("maintainCase") ? req.body.maintainCase : false)
+    const ignoreForeignChars:boolean = (req.body.hasOwnProperty("ignoreForeignChars") ? req.body.ignoreForeignChars : true)
+    const ignoreWhitespace:boolean = (req.body.hasOwnProperty("ignoreWhitespace") ? req.body.ignoreWhitespace : true) 
 
-    res.send(encipher(plaintext,shift))
+    //TODO standardise response and document
+    res.status(200).send(encipher(plaintext,shift,direction,maintainCase,ignoreForeignChars,ignoreWhitespace))
 
   } else {
-    res.send({errors: result.array()})
+    res.status(400).send({errors: result.array()})
   }
 })
 
