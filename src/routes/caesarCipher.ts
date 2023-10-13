@@ -24,9 +24,9 @@ router.post('/encode', [
   body('plaintext').trim().notEmpty().isString(),
   body('shift').notEmpty().isInt({min:1,max:25}),
   body('direction').optional().trim().isString(),
-  body('maintainCase').optional().isBoolean({strict:true}),
-  body('ignoreForeignChars').optional().isBoolean({strict:true}),
-  body('ignoreWhitespace').optional().isBoolean({strict:true})
+  body('maintainCase').optional().isBoolean(),
+  body('ignoreForeignChars').optional().isBoolean(),
+  body('ignoreWhitespace').optional().isBoolean()
 ], (req:Request, res:Response) => {
   
   const result = validationResult(req)
@@ -36,9 +36,9 @@ router.post('/encode', [
     const plaintext:string = req.body.plaintext.trim()
     const shift:number = req.body.shift
     const direction:string  = (req.body.hasOwnProperty("direction") ? req.body.direction.trim() : "+")
-    const maintainCase:boolean = (req.body.hasOwnProperty("maintainCase") ? req.body.maintainCase : false)
-    const ignoreForeignChars:boolean = (req.body.hasOwnProperty("ignoreForeignChars") ? req.body.ignoreForeignChars : true)
-    const ignoreWhitespace:boolean = (req.body.hasOwnProperty("ignoreWhitespace") ? req.body.ignoreWhitespace : true) 
+    const maintainCase:boolean = (req.body.hasOwnProperty("maintainCase") ? (String(req.body.maintainCase).toLowerCase() === 'true') : false)
+    const ignoreForeignChars:boolean = (req.body.hasOwnProperty("ignoreForeignChars") ? String(req.body.ignoreForeignChars).toLowerCase() === 'true' : true)
+    const ignoreWhitespace:boolean = (req.body.hasOwnProperty("ignoreWhitespace") ? String(req.body.ignoreWhitespace).toLowerCase() === 'true' : true) 
 
     //TODO standardise response and document
     res.status(200).send(encipher(plaintext,shift,direction,maintainCase,ignoreForeignChars,ignoreWhitespace))
