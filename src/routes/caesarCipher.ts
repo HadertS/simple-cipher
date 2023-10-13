@@ -24,9 +24,9 @@ router.post('/encode', [
   body('plaintext').trim().notEmpty().isString(),
   body('shift').notEmpty().isInt({min:1,max:25}),
   body('direction').optional().trim().isString(),
-  body('maintainCase').optional().isBoolean(),
-  body('ignoreForeignChars').optional().isBoolean(),
-  body('ignoreWhitespace').optional().isBoolean()
+  body('maintainCase').optional().isBoolean({strict:true}),
+  body('ignoreForeignChars').optional().isBoolean({strict:true}),
+  body('ignoreWhitespace').optional().isBoolean({strict:true})
 ], (req:Request, res:Response) => {
   
   const result = validationResult(req)
