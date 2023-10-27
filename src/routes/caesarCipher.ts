@@ -40,11 +40,13 @@ router.post('/encode', [
     const ignoreForeignChars:boolean = (req.body.hasOwnProperty("ignoreForeignChars") ? String(req.body.ignoreForeignChars).toLowerCase() === 'true' : true)
     const ignoreWhitespace:boolean = (req.body.hasOwnProperty("ignoreWhitespace") ? String(req.body.ignoreWhitespace).toLowerCase() === 'true' : true) 
 
-    //TODO standardise response and document
-    res.status(200).send(encipher(plaintext,shift,direction,maintainCase,ignoreForeignChars,ignoreWhitespace))
+    res.status(200)
+    res.setHeader('Content-Type', 'application/json')
+    res.json({cipherText : encipher(plaintext,shift,direction,maintainCase,ignoreForeignChars,ignoreWhitespace)})
+    res.send()
 
   } else {
-    res.status(400).send({errors: result.array()})
+    res.status(400).setHeader('Content-Type', 'application/json').json({errors: result.array()}).send()
   }
 })
 
